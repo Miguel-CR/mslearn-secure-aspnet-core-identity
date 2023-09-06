@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesPizza.Areas.Identity.Data;
+
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("RazorPagesPizzaAuthConnection");builder.Services.AddDbContext<RazorPagesPizzaAuth>(options =>
-    options.UseSqlServer(connectionString));builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+var connectionString = builder.Configuration.GetConnectionString("RazorPagesPizzaAuthConnection"); builder.Services.AddDbContext<RazorPagesPizzaAuth>(options =>
+    options.UseSqlServer(connectionString)); builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<RazorPagesPizzaAuth>();
+
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 
@@ -19,10 +23,13 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
+
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapRazorPages();
